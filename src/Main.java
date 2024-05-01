@@ -58,19 +58,40 @@ public class Main {
     }
 
     private static void criarNovaConta(Scanner scanner, GerenciadorDeContas gerenciador) {
-        System.out.print("Entre com o nome do titular da nova conta: ");
-        String novoNomeTitular = scanner.nextLine();
+        String novoNomeTitular = "";
+        boolean nomeValido = false;
+
+        while (!nomeValido) {
+            System.out.print("Entre com o nome do titular da nova conta: ");
+            novoNomeTitular = scanner.nextLine();
+
+            if (!novoNomeTitular.matches("[a-zA-Z\\s]+")) {
+                System.out.println("Por favor, insira somente letras.");
+            } else {
+                nomeValido = true;
+            }
+        }
+
         System.out.print("Entre com o número da nova conta: ");
         int novoNumeroDaConta = scanner.nextInt();
+        scanner.nextLine();
+
         if (gerenciador.contaExiste(novoNumeroDaConta)) {
             System.out.println("Erro: Uma conta com esse número já existe.");
             return;
         }
+
         System.out.print("Entre com o saldo inicial: ");
         double novoSaldoInicial = scanner.nextDouble();
-        ContaBancaria novaConta = new ContaBancaria(novoNumeroDaConta, novoSaldoInicial, novoNomeTitular);
-        gerenciador.adicionarConta(novaConta);
-        System.out.println("Conta criada com sucesso!");
+        scanner.nextLine();
+
+        try {
+            ContaBancaria novaConta = new ContaBancaria(novoNumeroDaConta, novoSaldoInicial, novoNomeTitular);
+            gerenciador.adicionarConta(novaConta);
+            System.out.println("Conta criada com sucesso!");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void subMenu(Scanner scanner, ContaBancaria conta, GerenciadorDeContas gerenciador) {
