@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8f5e1687-3577-49db-84f4-82cf28924a09" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ContaBancaria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ContaBancaria.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,13 +39,14 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/pc/Desktop/simulator-bank",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Users/pc/Desktop/simulator-bank/src/Main.java",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -80,6 +82,7 @@
       <updated>1714525933176</updated>
       <workItem from="1714525934218" duration="1017000" />
       <workItem from="1714530304762" duration="1640000" />
+      <workItem from="1714576716944" duration="3476000" />
     </task>
     <servers />
   </component>

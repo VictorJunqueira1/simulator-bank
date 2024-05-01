@@ -81,8 +81,12 @@ public class ContaBancaria {
 
     public void exibirHistoricoTransacoes() {
         System.out.println("Histórico de transações para " + nomeDoTitular + ":");
-        for (String transacao : historicoTransacoes) {
-            System.out.println(transacao);
+        if (historicoTransacoes.isEmpty()) {
+            System.out.println("Sem transações até o momento");
+        } else {
+            for (String transacao : historicoTransacoes) {
+                System.out.println(transacao);
+            }
         }
     }
 
