@@ -2,18 +2,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GerenciadorDeContas {
-    private Map<Integer, ContaBancaria> contas;
-
-    public GerenciadorDeContas() {
-        this.contas = new HashMap<>();
-    }
+    private Map<Integer, ContaBancaria> contas = new HashMap<>();
 
     public void adicionarConta(ContaBancaria conta) {
-        contas.put(conta.getNumeroDaConta(), conta);
+        if (!contaExiste(conta.getNumeroDaConta())) {
+            contas.put(conta.getNumeroDaConta(), conta);
+        }
     }
 
     public ContaBancaria obterConta(int numeroDaConta) {
         return contas.get(numeroDaConta);
+    }
+
+    public boolean contaExiste(int numeroDaConta) {
+        return contas.containsKey(numeroDaConta);
     }
 
     public void mostrarTodasAsContas() {

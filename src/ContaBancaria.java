@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ContaBancaria {
     private int numeroDaConta;
@@ -29,8 +30,20 @@ public class ContaBancaria {
     public void depositar(double valor) {
         if (valor > 0) {
             saldo += valor;
-            historicoTransacoes.add("Depósito: R$ " + String.format("%.2f", valor));
-            System.out.println("Depósito realizado com sucesso! Saldo atual: R$ " + String.format("%.2f", saldo));
+            String transacao = "Depósito próprio: R$ " + String.format("%.2f", valor);
+            historicoTransacoes.add(transacao);
+            System.out.println(transacao + " realizado com sucesso! Saldo atual: R$ " + String.format("%.2f", saldo));
+        } else {
+            System.out.println("O valor do depósito deve ser positivo.");
+        }
+    }
+
+    public void depositar(double valor, String nomeRemetente) {
+        if (valor > 0) {
+            saldo += valor;
+            String transacao = "Depósito de " + nomeRemetente + ": R$ " + String.format("%.2f", valor);
+            historicoTransacoes.add(transacao);
+            System.out.println(transacao + " realizado com sucesso! Saldo atual: R$ " + String.format("%.2f", saldo));
         } else {
             System.out.println("O valor do depósito deve ser positivo.");
         }
@@ -51,8 +64,9 @@ public class ContaBancaria {
     public void transferir(ContaBancaria destino, double valor) {
         if (valor > 0 && saldo >= valor) {
             saldo -= valor;
-            destino.depositar(valor);
-            historicoTransacoes.add("Transferência para " + destino.nomeDoTitular + ": R$ " + String.format("%.2f", valor));
+            destino.depositar(valor, this.nomeDoTitular);
+            historicoTransacoes
+                    .add("Transferência para " + destino.getNomeTitular() + ": R$ " + String.format("%.2f", valor));
             System.out.println("Transferência realizada com sucesso! Saldo atual: R$ " + String.format("%.2f", saldo));
         } else if (valor <= 0) {
             System.out.println("O valor da transferência deve ser positivo.");
@@ -70,5 +84,20 @@ public class ContaBancaria {
         for (String transacao : historicoTransacoes) {
             System.out.println(transacao);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        ContaBancaria that = (ContaBancaria) o;
+        return numeroDaConta == that.numeroDaConta;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroDaConta);
     }
 }
