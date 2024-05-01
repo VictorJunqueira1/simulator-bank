@@ -11,13 +11,15 @@ public class Main {
         do {
             try {
                 System.out.println("\nMenu:");
-                System.out.println("1 - Entrar numa conta existente");
-                System.out.println("2 - Criar nova conta");
-                System.out.println("3 - Mostrar todas as contas");
-                System.out.println("0 - Sair");
-                System.out.print("Escolha uma opção: ");
+                System.out.println("-----------------------------------");
+                System.out.println("| 1 - Entrar numa conta existente | ");
+                System.out.println("| 2 - Criar nova conta            |");
+                System.out.println("| 3 - Mostrar todas as contas     |");
+                System.out.println("| 0 - Sair                        |");
+                System.out.println("-----------------------------------");
+                System.out.print("\nEscolha uma opção: ");
                 opcao = scanner.nextInt();
-                scanner.nextLine(); 
+                scanner.nextLine();
 
                 switch (opcao) {
                     case 1:
@@ -41,7 +43,6 @@ public class Main {
                 scanner.nextLine();
             }
         } while (opcao != 0);
-
         scanner.close();
     }
 
@@ -98,13 +99,15 @@ public class Main {
         int escolha;
         do {
             System.out.println("\nSub-menu:");
-            System.out.println("1 - Depositar");
-            System.out.println("2 - Sacar");
-            System.out.println("3 - Transferir");
-            System.out.println("4 - Consultar Saldo");
-            System.out.println("5 - Exibir Histórico de Transações");
-            System.out.println("0 - Voltar ao Menu Principal");
-            System.out.print("Escolha uma operação: ");
+            System.out.println("--------------------------------------");
+            System.out.println("| 1 - Depositar                      |");
+            System.out.println("| 2 - Sacar                          |");
+            System.out.println("| 3 - Transferir                     |");
+            System.out.println("| 4 - Consultar Saldo                |");
+            System.out.println("| 5 - Exibir Histórico de Transações |");
+            System.out.println("| 0 - Voltar ao Menu Principal       |");
+            System.out.println("--------------------------------------");
+            System.out.print("\nEscolha uma operação: ");
             escolha = scanner.nextInt();
 
             switch (escolha) {
