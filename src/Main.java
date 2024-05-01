@@ -5,58 +5,33 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
         GerenciadorDeContas gerenciador = new GerenciadorDeContas();
-        
-        System.out.print("Entre com o nome do titular da conta: ");
-        String nomeTitular = scanner.nextLine();
-        ContaBancaria minhaConta = new ContaBancaria(12345, 0, nomeTitular);
-        gerenciador.adicionarConta(minhaConta);
 
-        while (true) {
-            System.out.println("\nEscolha uma operação:");
-            System.out.println("1 - Depositar");
-            System.out.println("2 - Sacar");
-            System.out.println("3 - Transferir");
-            System.out.println("4 - Consultar Saldo");
-            System.out.println("5 - Exibir Histórico de Transações");
-            System.out.println("6 - Criar nova conta");
+        int opcao;
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1 - Entrar numa conta existente");
+            System.out.println("2 - Criar nova conta");
+            System.out.println("3 - Mostrar todas as contas");
             System.out.println("0 - Sair");
-            System.out.print("Operação: ");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
 
-            int operacao = scanner.nextInt();
-
-            double valor;
-            switch (operacao) {
+            switch (opcao) {
                 case 1:
-                    System.out.print("Valor para depósito: ");
-                    valor = scanner.nextDouble();
-                    minhaConta.depositar(valor);
-                    break;
-                case 2:
-                    System.out.print("Valor para saque: ");
-                    valor = scanner.nextDouble();
-                    minhaConta.sacar(valor);
-                    break;
-                case 3:
-                    System.out.print("Valor para transferência: ");
-                    valor = scanner.nextDouble();
-                    System.out.print("Número da conta destinatária: ");
-                    int numeroContaDest = scanner.nextInt();
-                    ContaBancaria contaDest = gerenciador.obterConta(numeroContaDest);
-                    if (contaDest != null) {
-                        minhaConta.transferir(contaDest, valor);
+                    System.out.print("Digite o número da conta: ");
+                    int numConta = scanner.nextInt();
+                    ContaBancaria contaAtual = gerenciador.obterConta(numConta);
+                    if (contaAtual == null) {
+                        System.out.println("Conta não encontrada. Por favor, tente novamente.");
                     } else {
-                        System.out.println("Conta destinatária não encontrada.");
+                        System.out.println("Bem-vindo(a), " + contaAtual.getNomeTitular() + "!");
+                        subMenu(scanner, contaAtual, gerenciador);
                     }
                     break;
-                case 4:
-                    minhaConta.consultarSaldo();
-                    break;
-                case 5:
-                    minhaConta.exibirHistoricoTransacoes();
-                    break;
-                case 6:
+                case 2:
                     System.out.print("Entre com o nome do titular da nova conta: ");
-                    String novoNomeTitular = scanner.next();
+                    scanner.nextLine();  // Consumir newline
+                    String novoNomeTitular = scanner.nextLine();
                     System.out.print("Entre com o número da nova conta: ");
                     int novoNumeroDaConta = scanner.nextInt();
                     System.out.print("Entre com o saldo inicial: ");
@@ -65,13 +40,70 @@ public class Main {
                     gerenciador.adicionarConta(novaConta);
                     System.out.println("Conta criada com sucesso!");
                     break;
+                case 3:
+                    gerenciador.mostrarTodasAsContas();
+                    break;
                 case 0:
-                    System.out.println("Encerrando o sistema bancário...");
-                    scanner.close();
-                    return;
+                    System.out.println("Encerrando o sistema...");
+                    break;
                 default:
-                    System.out.println("Operação inválida.");
+                    System.out.println("Opção inválida. Tente novamente.");
+                    break;
             }
-        }
+        } while (opcao != 0);
+
+        scanner.close();
+    }
+
+    private static void subMenu(Scanner scanner, ContaBancaria conta, GerenciadorDeContas gerenciador) {
+        int escolha;
+        do {
+            System.out.println("\nSub-menu:");
+            System.out.println("1 - Depositar");
+            System.out.println("2 - Sacar");
+            System.out.println("3 - Transferir");
+            System.out.println("4 - Consultar Saldo");
+            System.out.println("5 - Exibir Histórico de Transações");
+            System.out.println("0 - Voltar ao Menu Principal");
+            System.out.print("Escolha uma operação: ");
+            escolha = scanner.nextInt();
+
+            switch (escolha) {
+                case 1:
+                    System.out.print("Digite o valor para depósito: ");
+                    double deposito = scanner.nextDouble();
+                    conta.depositar(deposito);
+                    break;
+                case 2:
+                    System.out.print("Digite o valor para saque: ");
+                    double saque = scanner.nextDouble();
+                    conta.sacar(saque);
+                    break;
+                case 3:
+                    System.out.print("Número da conta destinatária: ");
+                    int numContaDest = scanner.nextInt();
+                    ContaBancaria contaDest = gerenciador.obterConta(numContaDest);
+                    if (contaDest != null) {
+                        System.out.print("Digite o valor para transferência: ");
+                        double valor = scanner.nextDouble();
+                        conta.transferir(contaDest, valor);
+                    } else {
+                        System.out.println("Conta destinatária não encontrada.");
+                    }
+                    break;
+                case 4:
+                    conta.consultarSaldo();
+                    break;
+                case 5:
+                    conta.exibirHistoricoTransacoes();
+                    break;
+                case 0:
+                    System.out.println("Voltando ao menu principal...");
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+                    break;
+            }
+        } while (escolha != 0);
     }
 }

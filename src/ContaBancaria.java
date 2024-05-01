@@ -18,6 +18,14 @@ public class ContaBancaria {
         return numeroDaConta;
     }
 
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public String getNomeTitular() {
+        return nomeDoTitular;
+    }
+
     public void depositar(double valor) {
         if (valor > 0) {
             saldo += valor;
@@ -44,8 +52,7 @@ public class ContaBancaria {
         if (valor > 0 && saldo >= valor) {
             saldo -= valor;
             destino.depositar(valor);
-            historicoTransacoes
-                    .add("Transferência para " + destino.nomeDoTitular + ": R$ " + String.format("%.2f", valor));
+            historicoTransacoes.add("Transferência para " + destino.nomeDoTitular + ": R$ " + String.format("%.2f", valor));
             System.out.println("Transferência realizada com sucesso! Saldo atual: R$ " + String.format("%.2f", saldo));
         } else if (valor <= 0) {
             System.out.println("O valor da transferência deve ser positivo.");
