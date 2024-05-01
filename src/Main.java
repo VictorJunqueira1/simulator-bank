@@ -20,7 +20,7 @@ public class Main {
 
             if (!scanner.hasNextInt()) {
                 System.out.println("Por favor, digite um número válido.");
-                scanner.next(); // Limpa o buffer do scanner
+                scanner.next();
                 continue;
             }
             int operacao = scanner.nextInt();
@@ -34,7 +34,7 @@ public class Main {
                         minhaConta.depositar(valor);
                     } else {
                         System.out.println("Por favor, digite um número válido.");
-                        scanner.next(); // Limpa o buffer do scanner
+                        scanner.next();
                     }
                     break;
                 case 2:
@@ -44,7 +44,7 @@ public class Main {
                         minhaConta.sacar(valor);
                     } else {
                         System.out.println("Por favor, digite um número válido.");
-                        scanner.next(); // Limpa o buffer do scanner
+                        scanner.next();
                     }
                     break;
                 case 3:
@@ -54,17 +54,17 @@ public class Main {
                         System.out.print("Número da conta destinatária: ");
                         if (scanner.hasNextInt()) {
                             int numContaDest = scanner.nextInt();
-                            scanner.nextLine(); // Limpa o buffer do scanner
+                            scanner.nextLine();
                             System.out.print("Nome do titular da conta destinatária: ");
                             String nomeDest = scanner.nextLine();
                             minhaConta.transferir(new ContaBancaria(numContaDest, 0, nomeDest), valor);
                         } else {
                             System.out.println("Por favor, digite um número válido para a conta.");
-                            scanner.next(); // Limpa o buffer do scanner
+                            scanner.next();
                         }
                     } else {
                         System.out.println("Por favor, digite um número válido.");
-                        scanner.next(); // Limpa o buffer do scanner
+                        scanner.next();
                     }
                     break;
                 case 4:

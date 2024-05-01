@@ -1,10 +1,8 @@
 public class ContaBancaria {
-    private int numeroDaConta;
     private double saldo;
-    private String nomeDoTitular;  // Nome do titular da conta
+    private String nomeDoTitular; 
 
     public ContaBancaria(int numeroDaConta, double saldoInicial, String nomeDoTitular) {
-        this.numeroDaConta = numeroDaConta;
         this.saldo = saldoInicial;
         this.nomeDoTitular = nomeDoTitular;
     }
