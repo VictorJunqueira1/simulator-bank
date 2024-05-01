@@ -15,6 +15,7 @@ public class Main {
             System.out.println("2 - Sacar");
             System.out.println("3 - Transferir");
             System.out.println("4 - Consultar Saldo");
+            System.out.println("5 - Exibir Histórico de Transações");
             System.out.println("0 - Sair");
             System.out.print("Operação: ");
 
@@ -69,6 +70,9 @@ public class Main {
                     break;
                 case 4:
                     minhaConta.consultarSaldo();
+                    break;
+                case 5:
+                    minhaConta.exibirHistoricoTransacoes();
                     break;
                 case 0:
                     System.out.println("Encerrando o sistema bancário...");
