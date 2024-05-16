@@ -62,6 +62,11 @@ public class ContaBancaria {
     }
 
     public void transferir(ContaBancaria destino, double valor) {
+        if (this.numeroDaConta == destino.numeroDaConta) {
+            System.out.println("Você não pode fazer uma transferência para si próprio.");
+            return;
+        }
+
         if (valor > 0 && saldo >= valor) {
             saldo -= valor;
             destino.depositar(valor, this.nomeDoTitular);
